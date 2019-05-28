@@ -5,7 +5,7 @@ CXXFLAGS = -std=c++11 -g -Wall -Wextra -Werror
 avl: avl.o Tree.o
 	${CXX} $(CXXFLAGS) -o $@ $^
 
-avl.o: avl.cpp Tree.cpp
+avl.o: avl.cpp Tree.h
 	${CXX} $(CXXFLAGS) -c -o $@ $<
 
 Tree.o: Tree.cpp Tree.h
