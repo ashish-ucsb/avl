@@ -17,7 +17,7 @@ Node* newNode(int key);
 Node* rightRotate(Node *y);
 Node* leftRotate(Node *x);
 int getBalance(Node *N);
-Node* insert(Node* node, int key);
+Node* insert(Node* node, int key, int *rotationsPointer);
 void preOrder(Node *root);
 
 #endif

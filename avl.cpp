@@ -6,12 +6,12 @@
 #include "Tree.h"
 using namespace std;
 
-vector<int> removeDups(vector<int> a, int N)
+int removeDups(vector<int> a, int N)
 {
     set<int> s;
     for(int i = 0; i < N; ++i ) s.insert(a[i]);
     a.assign( s.begin(), s.end() );
-    return a;
+    return a.size();
 }
 
 vector<int> int_vector(string array)
@@ -37,29 +37,21 @@ vector<int> int_vector(string array)
     return arr;
 }
 
-void insert_master(vector<int> int_vec)
+Node* insert_master(vector<int> int_vec, Node* root)
 {
-
-    // int N = int_vec.size(); // Original size
-    
-    //int_vec = removeDups(int_vec, N);
-    int n = int_vec.size();
-
-    // int arr[n];
-    // copy(int_vec.begin(), int_vec.end(), arr);
-
-    Node *root = NULL;
-
-    // int rotations = 0;
-    for (int i = 0; i < n; i++) 
+    int rotations = 0;
+    int N = int_vec.size();
+    // int n = removeDups(int_vec, N);
+    for (int i = 0; i < N; i++) 
     {  
-        root = insert(root, int_vec[i]);
-    } 
+        root = insert(root, int_vec[i], &rotations);
+    }
+    //Added 2 of 2 nodes.
     // cout << "Added " << n << " of " << N << " nodes." << endl;
-    // cout << "\nVisited " << N << " (1) nodes and performed " << " rotations" << endl;
+    //Visited 1 (0.5) nodes and performed 0 (0) rotations.
+    // cout << "performed " << rotations << " (0) rotations" << endl;
 
-    preOrder(root);
-    cout << endl;
+    return root;
 
 }
 
@@ -73,6 +65,7 @@ int main(int argc, char* argv[])
 		string line;
 		ifstream inFile;
 		inFile.open( argv[1] ); // note no mode needed 
+        Node *root = NULL;
 		if (!inFile)
 		{
 			cout<<"unable to open file";
@@ -87,16 +80,16 @@ int main(int argc, char* argv[])
 				{
 					string array = line.substr(7, line.length());
                     vector<int> int_vec = int_vector(array);
-					insert_master(int_vec);
+					root = insert_master(int_vec, root);
 				}
+        if (line.compare("print tree") == 0)
+        {
+          preOrder(root);
+          cout << endl;
+        }
 			}
-			
-			// if (function_name == "insert")
-			// {
-			// 	string num_array = line[1:];
-			// 	cout << num_array <<endl;
-			// }
 		}
+        
 	}
 	return 0;
 

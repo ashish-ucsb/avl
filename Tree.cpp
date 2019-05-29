@@ -91,16 +91,16 @@ int getBalance(Node *N)
 // Recursive function to insert a key 
 // in the subtree rooted with node and 
 // returns the new root of the subtree.  
-Node* insert(Node* node, int key)  
+Node* insert(Node* node, int key, int *rotationsPointer)  
 {  
     /* 1. Perform the normal BST insertion */
     if (node == NULL)  
         return(newNode(key));  
   
     if (key < node->key)  
-        node->left = insert(node->left, key);  
+        node->left = insert(node->left, key, rotationsPointer);  
     else if (key > node->key)  
-        node->right = insert(node->right, key);  
+        node->right = insert(node->right, key, rotationsPointer);  
     else // Equal keys are not allowed in BST  
         return node;  
   
@@ -117,16 +117,24 @@ Node* insert(Node* node, int key)
     // there are 4 cases  
   
     // Left Left Case  
-    if (balance > 1 && key < node->left->key)  
-        return rightRotate(node);  
-  
+    if (balance > 1 && key < node->left->key)
+    {
+        *rotationsPointer+=1;
+        return rightRotate(node);
+    }  
+          
     // Right Right Case  
-    if (balance < -1 && key > node->right->key)  
-        return leftRotate(node);  
+    if (balance < -1 && key > node->right->key)
+    {
+        *rotationsPointer+=1;
+        return leftRotate(node);
+    }  
+          
   
     // Left Right Case  
     if (balance > 1 && key > node->left->key)  
     {  
+        *rotationsPointer+=2;
         node->left = leftRotate(node->left);  
         return rightRotate(node);  
     }  
@@ -134,6 +142,7 @@ Node* insert(Node* node, int key)
     // Right Left Case  
     if (balance < -1 && key < node->right->key)  
     {  
+        *rotationsPointer+=2;
         node->right = rightRotate(node->right);  
         return leftRotate(node);  
     }  
