@@ -227,3 +227,27 @@ void print_left_left(Node* root, int *upr, int *lwr)
             print_left_left(root->left, upr, lwr);
     }
 }
+
+void print_right_right(Node* root, int *upr, int *lwr)
+{
+    int prebal = getBalance(root);
+
+    if(prebal == 1)
+    {
+        *upr = max(root->key, root->left->key) - 1;
+        print_right_right(root->left, upr, lwr);
+    }
+    if(prebal == -1)
+    {
+        *lwr = max(root->key, root->right->key) + 1;
+        print_right_right(root->right, upr, lwr);
+    }
+    if(prebal == 0)
+    {
+        *lwr = root->key + 1;
+        if (root->right != NULL)
+        {
+            print_right_right(root->right, upr, lwr);
+        }
+    }
+}

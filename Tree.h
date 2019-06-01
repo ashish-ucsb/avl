@@ -24,6 +24,7 @@ void preOrder(Node *root);
 void lookup(Node* root, vector<int> &tree_vec);
 void printTree(Node* root, int *c);
 void print_left_left(Node* root, int *upr, int *lwr);
+void print_right_right(Node* root, int *upr, int *lwr);
 
 #endif
 

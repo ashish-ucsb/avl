@@ -95,7 +95,9 @@ int main(int argc, char* argv[])
 		string line;
 		ifstream inFile;
 		inFile.open( argv[1] ); // note no mode needed 
-        Node *root = NULL;
+    Node *root = NULL;
+    int upr = 2147483647;
+    int lwr = -2147483647;
 		if (!inFile)
 		{
 			cout<<"unable to open file";
@@ -127,14 +129,13 @@ int main(int argc, char* argv[])
         }
         if (line.compare("print left-left") == 0)
         {
-          int upr = 2147483648;
-          int lwr = -2147483648;
           print_left_left(root, &upr, &lwr);
           cout << "The following inserts would cause a left-left rotation:" << "\n" << lwr << " to " << upr << "\n" << endl;
         }
         if (line.compare("print right-right") == 0)
         {
-          cout << "Print RIGHT-RIGHT" << endl;
+          print_right_right(root, &upr, &lwr);
+          cout << "The following inserts would cause a right-right rotation:" << "\n" << lwr << " to " << upr << "\n" << endl;
         }
         if (line.compare("print left-right") == 0)
         {
