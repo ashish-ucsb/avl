@@ -58,34 +58,29 @@ Node* insert_master(Node* root, vector<int> int_vec)
 
 void lookup_master(Node* root, vector<int> lookup_vec)
 {
-  vector<int> tree_vec;
-  lookup(root, tree_vec);
+  int visits = 0;
   vector<int> found_vec;
-  int count = 0;
+  int N = lookup_vec.size();
 
-  int n=lookup_vec.size();
+  for (int i=0; i<N; i++)
+  {
+    lookup(root, lookup_vec[i], &visits, found_vec);
+  }
+
+  // Found 3 of 5 nodes: [7, 12, 7]
+  // Visited 10 (2) nodes and performed 0 (0) rotations.
+
+  int n = found_vec.size();
+  cout << "Found " << n << " of " << N << " nodes : [";
+
   for (int i=0; i<n; i++)
   {
-    vector<int>::iterator it;
-    it = find(tree_vec.begin(), tree_vec.end(), lookup_vec[i]);
-    if (it != tree_vec.end())
-    {
-      found_vec.push_back(lookup_vec[i]);
-      count +=1;
-    }
-  }
-  int p=found_vec.size();
-  cout << "Found " << count << " of " << n << " nodes: [";
-  for (int i=0; i<p; i++)
-  {
     cout << found_vec[i];
-    if(i<p-1)
-    {
+    if(i<n-1)
       cout << ", ";
-    } 
   }
-  cout << "]" << endl;
-  // Found 3 of 5 nodes: [7, 12, 7]
+
+  cout << "]\nVisited " << visits << " (" << visits/N << ") nodes and performed 0 (0) rotations.\n";
 }
 
 

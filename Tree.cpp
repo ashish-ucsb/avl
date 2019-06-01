@@ -179,14 +179,26 @@ void preOrder(Node *root)
     }  
 }
 
-void lookup(Node* root, vector<int> &tree_vec)
-{  
-    if(root != NULL)  
-    {  
-        tree_vec.push_back(root->key);  
-        lookup(root->left, tree_vec);  
-        lookup(root->right, tree_vec);  
-    }  
+void lookup(Node* root, int find, int *visits, vector<int> &found_vec)
+{
+    if(root != NULL)
+    {
+        if(find == root->key)
+        {
+            *visits +=1;
+            found_vec.push_back(find);
+        }
+        if(find < root->key)
+        {
+            *visits +=1;
+            lookup(root->left, find, visits, found_vec);
+        }
+        if(find > root->key)
+        {
+            *visits +=1;
+            lookup(root->right, find, visits, found_vec);
+        }
+    }
 }
 
 void printTree(Node* root, int *c)
