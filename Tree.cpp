@@ -174,3 +174,29 @@ void lookup(Node* root, vector<int> &tree_vec)
         lookup(root->right, tree_vec);  
     }  
 }
+
+void printTree(Node* root, int *c)
+{
+    if(root != NULL)
+    {
+        if (root->left != NULL || root->right != NULL)
+        {
+            *c+=1;
+            for(int i=0; i< *c-1; i++)
+            {
+                cout << "  ";
+            }
+            cout << "Node(" << root->key << ", h=" << root->height -1 << "):" << endl;
+        }
+        else
+        {
+            for(int i=0; i< *c; i++)
+            {
+                cout << "  ";
+            }
+            cout << "Leaf(" << root->key << ")" << endl;
+        }
+        printTree(root->left, c);
+        printTree(root->right, c);
+    }
+}

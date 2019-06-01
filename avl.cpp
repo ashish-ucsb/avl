@@ -114,7 +114,8 @@ int main(int argc, char* argv[])
 				}
         if (line.compare("print tree") == 0)
         {
-          preOrder(root);
+          int c = 0;
+          printTree(root, &c);
           cout << endl;
         }
         if (function_name.compare("lookup") == 0)
@@ -122,6 +123,7 @@ int main(int argc, char* argv[])
           string array = line.substr(7, line.length());
           vector<int> lookup_vec = int_vector(array);
           lookup_master(root, lookup_vec);
+          cout << endl;
         }
 			}
 		}

@@ -21,6 +21,7 @@ int getBalance(Node *N);
 Node* insert(Node* node, int key, int *rotationsPointer);
 void preOrder(Node *root);
 void lookup(Node* root, vector<int> &tree_vec);
+void printTree(Node* root, int *c);
 
 #endif
 
