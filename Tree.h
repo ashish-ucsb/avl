@@ -1,5 +1,6 @@
 #ifndef TREE_H
 #define TREE_H
+using namespace std;
 
 class Node  
 {  
@@ -19,6 +20,7 @@ Node* leftRotate(Node *x);
 int getBalance(Node *N);
 Node* insert(Node* node, int key, int *rotationsPointer);
 void preOrder(Node *root);
+void lookup(Node* root, vector<int> &tree_vec);
 
 #endif
 

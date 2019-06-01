@@ -14,7 +14,7 @@ int removeDups(vector<int> a, int N)
     return a.size();
 }
 
-vector<int> int_vector(string array)
+vector<int> int_vector(string array) // string array to int vector
 {
   stringstream ss;
   vector<int> arr;
@@ -37,7 +37,7 @@ vector<int> int_vector(string array)
     return arr;
 }
 
-Node* insert_master(vector<int> int_vec, Node* root)
+Node* insert_master(Node* root, vector<int> int_vec)
 {
     int rotations = 0;
     int N = int_vec.size();
@@ -52,9 +52,39 @@ Node* insert_master(vector<int> int_vec, Node* root)
     // cout << "performed " << rotations << " (0) rotations" << endl;
 
     return root;
-
 }
 
+void lookup_master(Node* root, vector<int> lookup_vec)
+{
+  vector<int> tree_vec;
+  lookup(root, tree_vec);
+  vector<int> found_vec;
+  int count = 0;
+
+  int n=lookup_vec.size();
+  for (int i=0; i<n; i++)
+  {
+    vector<int>::iterator it;
+    it = find(tree_vec.begin(), tree_vec.end(), lookup_vec[i]);
+    if (it != tree_vec.end())
+    {
+      found_vec.push_back(lookup_vec[i]);
+      count +=1;
+    }
+  }
+  int p=found_vec.size();
+  cout << "Found " << count << " of " << n << " nodes: [";
+  for (int i=0; i<p; i++)
+  {
+    cout << found_vec[i];
+    if(i<p-1)
+    {
+      cout << ", ";
+    } 
+  }
+  cout << "]" << endl;
+  // Found 3 of 5 nodes: [7, 12, 7]
+}
 
 
 int main(int argc, char* argv[])
@@ -79,13 +109,19 @@ int main(int argc, char* argv[])
 				if (function_name.compare("insert") == 0)
 				{
 					string array = line.substr(7, line.length());
-                    vector<int> int_vec = int_vector(array);
-					root = insert_master(int_vec, root);
+          vector<int> int_vec = int_vector(array);
+					root = insert_master(root, int_vec);
 				}
         if (line.compare("print tree") == 0)
         {
           preOrder(root);
           cout << endl;
+        }
+        if (function_name.compare("lookup") == 0)
+        {
+          string array = line.substr(7, line.length());
+          vector<int> lookup_vec = int_vector(array);
+          lookup_master(root, lookup_vec);
         }
 			}
 		}

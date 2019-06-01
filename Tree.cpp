@@ -164,3 +164,13 @@ void preOrder(Node *root)
         preOrder(root->right);  
     }  
 }
+
+void lookup(Node* root, vector<int> &tree_vec)
+{  
+    if(root != NULL)  
+    {  
+        tree_vec.push_back(root->key);  
+        lookup(root->left, tree_vec);  
+        lookup(root->right, tree_vec);  
+    }  
+}
