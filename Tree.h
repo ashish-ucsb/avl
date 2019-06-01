@@ -14,6 +14,7 @@ class Node
 
 int height(Node *N);
 int max(int a, int b);
+int min(int a, int b);
 Node* newNode(int key);
 Node* rightRotate(Node *y);
 Node* leftRotate(Node *x);
@@ -22,6 +23,7 @@ Node* insert(Node* node, int key, int *rotationsPointer);
 void preOrder(Node *root);
 void lookup(Node* root, vector<int> &tree_vec);
 void printTree(Node* root, int *c);
+void print_left_left(Node* root, int *upr, int *lwr);
 
 #endif
 

@@ -14,4 +14,3 @@ The following inserts would cause a left-left rotation:
 13 to 41
 
 No inserts would cause a right-left rotation.
-

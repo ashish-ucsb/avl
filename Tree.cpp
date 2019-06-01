@@ -20,6 +20,11 @@ int height(Node *N)
 int max(int a, int b)  
 {  
     return (a > b)? a : b;  
+}
+
+int min(int a, int b)  
+{  
+    return (a < b)? a : b;  
 }  
   
 /* Helper function that allocates a  
@@ -198,5 +203,27 @@ void printTree(Node* root, int *c)
         }
         printTree(root->left, c);
         printTree(root->right, c);
+    }
+}
+
+void print_left_left(Node* root, int *upr, int *lwr)
+{
+    int prebal = getBalance(root);
+    
+    if (prebal == 1)
+    {
+        *upr = min(root->key, root->left->key) - 1;
+        print_left_left(root->left, upr, lwr);
+    }
+    if (prebal == -1)
+    {
+        *lwr = min(root->key, root->right->key) + 1;
+        print_left_left(root->right, upr, lwr);
+    }
+    if (prebal == 0)
+    {
+        *upr = root->key - 1;
+        if (root->left != NULL)
+            print_left_left(root->left, upr, lwr);
     }
 }

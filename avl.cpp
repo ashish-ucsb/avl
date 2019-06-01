@@ -125,6 +125,25 @@ int main(int argc, char* argv[])
           lookup_master(root, lookup_vec);
           cout << endl;
         }
+        if (line.compare("print left-left") == 0)
+        {
+          int upr = 2147483648;
+          int lwr = -2147483648;
+          print_left_left(root, &upr, &lwr);
+          cout << "The following inserts would cause a left-left rotation:" << "\n" << lwr << " to " << upr << "\n" << endl;
+        }
+        if (line.compare("print right-right") == 0)
+        {
+          cout << "Print RIGHT-RIGHT" << endl;
+        }
+        if (line.compare("print left-right") == 0)
+        {
+          cout << "Print LEFT-RIGHT" << endl;
+        } 
+        if (line.compare("print right-left") == 0)
+        {
+          cout << "Print RIGHT-LEFT" << endl;
+        }
 			}
 		}
         
