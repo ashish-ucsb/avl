@@ -19,7 +19,7 @@ Node* newNode(int key);
 Node* rightRotate(Node *y);
 Node* leftRotate(Node *x);
 int getBalance(Node *N);
-Node* insert(Node* node, int key, int *rotationsPointer);
+Node* insert(Node* node, int key, int *rotations, int *visits);
 void preOrder(Node *root);
 void lookup(Node* root, vector<int> &tree_vec);
 void printTree(Node* root, int *c);

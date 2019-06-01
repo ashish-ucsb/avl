@@ -41,15 +41,17 @@ Node* insert_master(Node* root, vector<int> int_vec)
 {
     int rotations = 0;
     int N = int_vec.size();
-    // int n = removeDups(int_vec, N);
+    int visits = 0;
+    int n = removeDups(int_vec, N);
     for (int i = 0; i < N; i++) 
     {  
-        root = insert(root, int_vec[i], &rotations);
+        root = insert(root, int_vec[i], &rotations, &visits);
     }
-    //Added 2 of 2 nodes.
-    // cout << "Added " << n << " of " << N << " nodes." << endl;
-    //Visited 1 (0.5) nodes and performed 0 (0) rotations.
-    // cout << "performed " << rotations << " (0) rotations" << endl;
+
+    // Added 2 of 2 nodes.
+    cout << "Added " << n << " of " << N << " nodes." << endl;
+    // Visited 1 (0.5) nodes and performed 0 (0) rotations.
+    cout << "Visited " << visits << " (" << visits/N << ") nodes and performed " << rotations << " (" << rotations << ") rotations.\n" << endl;
 
     return root;
 }
