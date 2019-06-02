@@ -40,7 +40,7 @@ vector<int> int_vector(string array) // string array to int vector
 Node* insert_master(Node* root, vector<int> int_vec)
 {
     int rotations = 0;
-    int N = int_vec.size();
+    float N = int_vec.size();
     int visits = 0;
     int n = removeDups(int_vec, N);
     for (int i = 0; i < N; i++) 
@@ -53,6 +53,7 @@ Node* insert_master(Node* root, vector<int> int_vec)
     // Visited 1 (0.5) nodes and performed 0 (0) rotations.
     cout << "Visited " << visits << " (" << visits/N << ") nodes and performed " << rotations << " (" << rotations << ") rotations.\n" << endl;
 
+
     return root;
 }
 
@@ -60,7 +61,7 @@ void lookup_master(Node* root, vector<int> lookup_vec)
 {
   int visits = 0;
   vector<int> found_vec;
-  int N = lookup_vec.size();
+  float N = lookup_vec.size();
 
   for (int i=0; i<N; i++)
   {
@@ -79,7 +80,6 @@ void lookup_master(Node* root, vector<int> lookup_vec)
     if(i<n-1)
       cout << ", ";
   }
-
   cout << "]\nVisited " << visits << " (" << visits/N << ") nodes and performed 0 (0) rotations.\n";
 }
 
