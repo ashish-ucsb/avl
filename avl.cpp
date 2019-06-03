@@ -56,7 +56,7 @@ Node* insert_master(Node* root, vector<int> int_vec)
     // Added 2 of 2 nodes.
     cout << "Added " << n << " of " << N << " nodes." << endl;
     // Visited 1 (0.5) nodes and performed 0 (0) rotations.
-    cout << "Visited " << visits << " (" << visits/n << ") nodes and performed " << rotations << " (" << rotations/n << ") rotations.\n" << endl;
+    cout << "Visited " << visits << " (" << visits/N << ") nodes and performed " << rotations << " (" << rotations/N << ") rotations.\n" << endl;
 
 
     return root;
