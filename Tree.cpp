@@ -179,26 +179,32 @@ void preOrder(Node *root)
     }  
 }
 
-void lookup(Node* root, int find, int *visits, vector<int> &found_vec)
+int lookup(Node* root, int find, int *visits)
 {
     if(root != NULL)
     {
         if(find == root->key)
         {
             *visits +=1;
-            found_vec.push_back(find);
+            return find;
         }
-        if(find < root->key)
+        else if(find < root->key)
         {
             *visits +=1;
-            lookup(root->left, find, visits, found_vec);
+            return lookup(root->left, find, visits);
         }
-        if(find > root->key)
+        else if(find > root->key)
         {
             *visits +=1;
-            lookup(root->right, find, visits, found_vec);
+            return lookup(root->right, find, visits);
+        }
+        else
+        {
+            return -1;
         }
     }
+    else
+        return -1;
 }
 
 void printTree(Node* root, int *c)
@@ -213,13 +219,13 @@ void printTree(Node* root, int *c)
             if (root->left == NULL)
             {
                 cout << string(*c, ' ' ) << string(*c, ' ' );
-                cout << "NULL" << endl;
+                cout << "Null" << endl;
             }
             printTree(root->left, c);
             if (root->right == NULL)
             {
                 cout << string(*c, ' ' ) << string(*c, ' ' );
-                cout << "NULL" << endl;
+                cout << "Null" << endl;
             }
             printTree(root->right, c);
         }
