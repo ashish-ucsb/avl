@@ -42,16 +42,21 @@ Node* insert_master(Node* root, vector<int> int_vec)
     int rotations = 0;
     float N = int_vec.size();
     int visits = 0;
-    int n = removeDups(int_vec, N);
+    int dummyvar;
+    int n=0;
     for (int i = 0; i < N; i++) 
     {  
+        if (lookup(root, int_vec[i], &dummyvar) != int_vec[i])
+        {
+          n +=1;
+        }
         root = insert(root, int_vec[i], &rotations, &visits);
     }
 
     // Added 2 of 2 nodes.
     cout << "Added " << n << " of " << N << " nodes." << endl;
     // Visited 1 (0.5) nodes and performed 0 (0) rotations.
-    cout << "Visited " << visits << " (" << visits/N << ") nodes and performed " << rotations << " (" << rotations/n << ") rotations.\n" << endl;
+    cout << "Visited " << visits << " (" << visits/n << ") nodes and performed " << rotations << " (" << rotations/n << ") rotations.\n" << endl;
 
 
     return root;
