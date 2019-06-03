@@ -14,3 +14,29 @@ The following inserts would cause a left-left rotation:
 13 to 41
 
 No inserts would cause a right-left rotation.
+
+Node(53, h=4):
+    Node(19, h=3):
+      Node(7, h=2):
+        Node(3, h=1):
+          Leaf(2)
+          Leaf(5)
++       Node(13, h=1):
++         Leaf(11)
++         Leaf(17)
++     Node(37, h=2):
++       Node(29, h=1):
++         Leaf(23)
++         Leaf(31)
++       Node(43, h=1):
++         Leaf(41)
++         Leaf(47)
++   Node(71, h=3):
++     Node(61, h=1):
++       Leaf(59)
++       Leaf(67)
++     Node(79, h=2):
++       Leaf(73)
++       Node(89, h=1):
++         Leaf(83)
++         Leaf(97)

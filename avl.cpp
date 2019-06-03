@@ -43,7 +43,7 @@ Node* insert_master(Node* root, vector<int> int_vec)
     float N = int_vec.size();
     int visits = 0;
     int dummyvar;
-    int n=0;
+    float n=0;
     for (int i = 0; i < N; i++) 
     {  
         if (lookup(root, int_vec[i], &dummyvar) != int_vec[i])

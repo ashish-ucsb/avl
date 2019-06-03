@@ -213,27 +213,22 @@ void printTree(Node* root, int *c)
     {
         if (root->left != NULL || root->right != NULL)
         {
-            *c+=1;
-            cout << string(*c-1, ' ' ) << string(*c-1, ' ' );
+            cout << string(*c*2, ' ' );
             cout << "Node(" << root->key << ", h=" << root->height -1 << "):" << endl;
-            if (root->left == NULL)
-            {
-                cout << string(*c, ' ' ) << string(*c, ' ' );
-                cout << "Null" << endl;
-            }
-            printTree(root->left, c);
-            if (root->right == NULL)
-            {
-                cout << string(*c, ' ' ) << string(*c, ' ' );
-                cout << "Null" << endl;
-            }
-            printTree(root->right, c);
+            int s= *c+1;
+            printTree(root->left, &s);
+            printTree(root->right, &s);
         }
-        else
+        if (root->left == NULL && root->right == NULL)
         {
-            cout << string(*c, ' ' ) << string(*c, ' ' );
+            cout << string(*c*2, ' ' );
             cout << "Leaf(" << root->key << ")" << endl;
         }
+    }
+    else
+    {
+        cout << string(*c*2, ' ' );
+        cout << "Null" << endl;
     }
 }
 
