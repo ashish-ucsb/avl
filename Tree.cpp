@@ -232,48 +232,80 @@ void printTree(Node* root, int *c)
     }
 }
 
-void print_left_left(Node* root, int *upr, int *lwr)
+void print_left_left(Node* root, int *upr, int *lwr, vector<int> *store)
 {
-    int prebal = getBalance(root);
-    
-    if (prebal == 1)
+    if(root != NULL)
     {
-        *upr = min(root->key, root->left->key) - 1;
-        print_left_left(root->left, upr, lwr);
-    }
-    if (prebal == -1)
-    {
-        *lwr = min(root->key, root->right->key) + 1;
-        print_left_left(root->right, upr, lwr);
-    }
-    if (prebal == 0)
-    {
-        *upr = root->key - 1;
-        if (root->left != NULL)
-            print_left_left(root->left, upr, lwr);
+        int prebal = getBalance(root);
+        if(prebal == -1)
+            *lwr = root->key + 1;
+        if(prebal == 1 && root->left != NULL && root->left->left == NULL)
+        {
+            *upr = root->left->key - 1;
+            store->push_back(*lwr);
+            store->push_back(*upr);
+            *upr = 2147483647;
+            *lwr = -2147483648;
+        }
+        print_left_left(root->left, upr, lwr, store);
+        print_left_left(root->right, upr, lwr, store);
     }
 }
 
-void print_right_right(Node* root, int *upr, int *lwr)
+void print_right_right(Node* root, int *upr, int *lwr, vector<int> *store)
 {
-    int prebal = getBalance(root);
-
-    if(prebal == 1)
+    if (root != NULL)
     {
-        *upr = max(root->key, root->left->key) - 1;
-        print_right_right(root->left, upr, lwr);
-    }
-    if(prebal == -1)
-    {
-        *lwr = max(root->key, root->right->key) + 1;
-        print_right_right(root->right, upr, lwr);
-    }
-    if(prebal == 0)
-    {
-        *lwr = root->key + 1;
-        if (root->right != NULL)
+        int prebal = getBalance(root);
+        if(prebal == 1)
+            *upr = root->key - 1;
+        if(prebal == -1 && root->right != NULL && root->right->right == NULL)
         {
-            print_right_right(root->right, upr, lwr);
+            *lwr = root->right->key + 1;
+            store->push_back(*lwr);
+            store->push_back(*upr);
+            *upr = 2147483647;
+            *lwr = -2147483648;
         }
+        print_right_right(root->left, upr, lwr, store);
+        print_right_right(root->right, upr, lwr, store);
+    }
+}
+
+void print_left_right(Node* root, int *upr, int *lwr, vector<int> *store)
+{
+    if (root != NULL)
+    {
+        int prebal = getBalance(root);
+        if(prebal == 1 && root->left != NULL && root->left->right == NULL)
+        {
+            *upr = root->key - 1;
+            *lwr = root->left->key + 1;
+            store->push_back(*lwr);
+            store->push_back(*upr);
+            *upr = 2147483647;
+            *lwr = -2147483648;
+        }
+        print_left_right(root->left, upr, lwr, store);
+        print_left_right(root->right, upr, lwr, store);
+    }
+}
+
+void print_right_left(Node* root, int *upr, int *lwr, vector<int> *store)
+{
+    if (root != NULL)
+    {
+        int prebal = getBalance(root);
+        if(prebal == -1 && root->right != NULL && root->right->left == NULL)
+        {
+            *lwr = root->key +1;
+            *upr = root->right->key -1;
+            store->push_back(*lwr);
+            store->push_back(*upr);
+            *upr = 2147483647;
+            *lwr = -2147483648;
+        }
+        print_right_left(root->left, upr, lwr, store);
+        print_right_left(root->right, upr, lwr, store);
     }
 }

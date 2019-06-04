@@ -100,8 +100,6 @@ int main(int argc, char* argv[])
 		ifstream inFile;
 		inFile.open( argv[1] ); // note no mode needed 
     Node *root = NULL;
-    int upr = 2147483647;
-    int lwr = -2147483647;
 		if (!inFile)
 		{
 			cout<<"unable to open file";
@@ -133,21 +131,118 @@ int main(int argc, char* argv[])
         }
         if (line.compare("print left-left") == 0)
         {
-          print_left_left(root, &upr, &lwr);
-          cout << "The following inserts would cause a left-left rotation:" << "\n" << lwr << " to " << upr << "\n" << endl;
+          int upr = 2147483647;
+          int lwr = -2147483648;
+          vector<int> store;
+          print_left_left(root, &upr, &lwr, &store);
+          int n = store.size();
+          if (n>1)
+          {
+            cout << "The following inserts would cause a left-left rotation:" << endl;
+            for (int i=0; i<n; i+=2)
+            {
+              if(store[i] == store[i+1])
+                cout << store[i];
+              else
+                cout << store[i] << " to " << store[i+1];
+              
+              if(i<n-2)
+                cout << ", ";
+            }
+            cout << endl;
+          }
+          else
+          {
+            cout << "No inserts would cause a right-left rotation." << endl;
+          }
+          cout << endl;
         }
+
         if (line.compare("print right-right") == 0)
         {
-          print_right_right(root, &upr, &lwr);
-          cout << "The following inserts would cause a right-right rotation:" << "\n" << lwr << " to " << upr << "\n" << endl;
+          int upr = 2147483647;
+          int lwr = -2147483648;
+          vector<int> store;
+          print_right_right(root, &upr, &lwr, &store);
+          int n = store.size();
+          if (n>1)
+          {
+            cout << "The following inserts would cause a right-right rotation:" << endl;
+            for (int i=0; i<n; i+=2)
+            {
+              if(store[i] == store[i+1])
+                cout << store[i];
+              else
+                cout << store[i] << " to " << store[i+1];
+              
+              if(i<n-2)
+                cout << ", ";
+            }
+            cout << endl;
+          }
+          else
+          {
+            cout << "No inserts would cause a right-right rotation." << endl;
+          }
+          cout << endl;
         }
+
         if (line.compare("print left-right") == 0)
         {
-          cout << "Print LEFT-RIGHT" << endl;
+          int upr = 2147483647;
+          int lwr = -2147483648;
+          vector<int> store;
+          print_left_right(root, &upr, &lwr, &store);
+          int n = store.size();
+          if (n>1)
+          {
+            cout << "The following inserts would cause a left-right rotation:" << endl;
+            for (int i=0; i<n; i+=2)
+            {
+              if(store[i] == store[i+1])
+                cout << store[i];
+              else
+                cout << store[i] << " to " << store[i+1];
+
+              if(i<n-2)
+                cout << ", ";
+            }
+            cout << endl;
+          }
+          else
+          {
+            cout << "No inserts would cause a left-right rotation." << endl;
+          }
+          cout << endl;
         } 
+
         if (line.compare("print right-left") == 0)
         {
-          cout << "Print RIGHT-LEFT" << endl;
+          int upr = 2147483647;
+          int lwr = -2147483648;
+          vector<int> store;
+          print_right_left(root, &upr, &lwr, &store);
+          int n = store.size();
+          if (n>1)
+          {
+            cout << "The following inserts would cause a right-left rotation:" << endl;
+            for (int i=0; i<n; i+=2)
+            {
+              if(store[i] == store[i+1])
+                cout << store[i];
+              else
+                cout << store[i] << " to " << store[i+1];
+
+              if(i<n-2)
+                cout << ", ";
+            }
+            cout << endl;
+          }
+          else
+          {
+            cout << "No inserts would cause a right-left rotation." << endl;
+          }
+          cout << endl;
         }
 			}
 		}
