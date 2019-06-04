@@ -133,27 +133,28 @@ int main(int argc, char* argv[])
         {
           int upr = 2147483647;
           int lwr = -2147483648;
-          vector<int> store;
+          vector< pair <int,int> > store;
           print_left_left(root, &upr, &lwr, &store);
+          sort(store.begin(), store.end());
           int n = store.size();
-          if (n>1)
+          if (n>0)
           {
             cout << "The following inserts would cause a left-left rotation:" << endl;
-            for (int i=0; i<n; i+=2)
+            for (int i=0; i<n; i++)
             {
-              if(store[i] == store[i+1])
-                cout << store[i];
+              if(store[i].first == store[i].second)
+                cout << store[i].first;
               else
-                cout << store[i] << " to " << store[i+1];
+                cout << store[i].first << " to " << store[i].second;
               
-              if(i<n-2)
+              if(i<n-1)
                 cout << ", ";
             }
             cout << endl;
           }
           else
           {
-            cout << "No inserts would cause a right-left rotation." << endl;
+            cout << "No inserts would cause a left-left rotation." << endl;
           }
           cout << endl;
         }
@@ -162,20 +163,21 @@ int main(int argc, char* argv[])
         {
           int upr = 2147483647;
           int lwr = -2147483648;
-          vector<int> store;
+          vector< pair <int,int> > store;
           print_right_right(root, &upr, &lwr, &store);
+          sort(store.begin(), store.end());
           int n = store.size();
-          if (n>1)
+          if (n>0)
           {
             cout << "The following inserts would cause a right-right rotation:" << endl;
-            for (int i=0; i<n; i+=2)
+            for (int i=0; i<n; i++)
             {
-              if(store[i] == store[i+1])
-                cout << store[i];
+              if(store[i].first == store[i].second)
+                cout << store[i].first;
               else
-                cout << store[i] << " to " << store[i+1];
+                cout << store[i].first << " to " << store[i].second;
               
-              if(i<n-2)
+              if(i<n-1)
                 cout << ", ";
             }
             cout << endl;
@@ -191,20 +193,21 @@ int main(int argc, char* argv[])
         {
           int upr = 2147483647;
           int lwr = -2147483648;
-          vector<int> store;
+          vector< pair <int,int> > store;
           print_left_right(root, &upr, &lwr, &store);
+          sort(store.begin(), store.end());
           int n = store.size();
-          if (n>1)
+          if (n>0)
           {
             cout << "The following inserts would cause a left-right rotation:" << endl;
-            for (int i=0; i<n; i+=2)
+            for (int i=0; i<n; i++)
             {
-              if(store[i] == store[i+1])
-                cout << store[i];
+              if(store[i].first == store[i].second)
+                cout << store[i].first;
               else
-                cout << store[i] << " to " << store[i+1];
+                cout << store[i].first << " to " << store[i].second;
 
-              if(i<n-2)
+              if(i<n-1)
                 cout << ", ";
             }
             cout << endl;
@@ -220,20 +223,21 @@ int main(int argc, char* argv[])
         {
           int upr = 2147483647;
           int lwr = -2147483648;
-          vector<int> store;
+          vector< pair <int,int> > store;
           print_right_left(root, &upr, &lwr, &store);
+          sort(store.begin(), store.end());
           int n = store.size();
-          if (n>1)
+          if (n>0)
           {
             cout << "The following inserts would cause a right-left rotation:" << endl;
-            for (int i=0; i<n; i+=2)
+            for (int i=0; i<n; i++)
             {
-              if(store[i] == store[i+1])
-                cout << store[i];
+              if(store[i].first == store[i].second)
+                cout << store[i].first;
               else
-                cout << store[i] << " to " << store[i+1];
+                cout << store[i].first << " to " << store[i].second;
 
-              if(i<n-2)
+              if(i<n-1)
                 cout << ", ";
             }
             cout << endl;

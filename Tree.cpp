@@ -232,7 +232,7 @@ void printTree(Node* root, int *c)
     }
 }
 
-void print_left_left(Node* root, int *upr, int *lwr, vector<int> *store)
+void print_left_left(Node* root, int *upr, int *lwr, vector< pair <int,int> > *store)
 {
     if(root != NULL)
     {
@@ -242,8 +242,7 @@ void print_left_left(Node* root, int *upr, int *lwr, vector<int> *store)
         if(prebal == 1 && root->left != NULL && root->left->left == NULL)
         {
             *upr = root->left->key - 1;
-            store->push_back(*lwr);
-            store->push_back(*upr);
+            store->push_back(make_pair(*lwr, *upr));
             *upr = 2147483647;
             *lwr = -2147483648;
         }
@@ -252,7 +251,7 @@ void print_left_left(Node* root, int *upr, int *lwr, vector<int> *store)
     }
 }
 
-void print_right_right(Node* root, int *upr, int *lwr, vector<int> *store)
+void print_right_right(Node* root, int *upr, int *lwr, vector< pair <int,int> > *store)
 {
     if (root != NULL)
     {
@@ -262,8 +261,7 @@ void print_right_right(Node* root, int *upr, int *lwr, vector<int> *store)
         if(prebal == -1 && root->right != NULL && root->right->right == NULL)
         {
             *lwr = root->right->key + 1;
-            store->push_back(*lwr);
-            store->push_back(*upr);
+            store->push_back(make_pair(*lwr, *upr));
             *upr = 2147483647;
             *lwr = -2147483648;
         }
@@ -272,7 +270,7 @@ void print_right_right(Node* root, int *upr, int *lwr, vector<int> *store)
     }
 }
 
-void print_left_right(Node* root, int *upr, int *lwr, vector<int> *store)
+void print_left_right(Node* root, int *upr, int *lwr, vector< pair <int,int> > *store)
 {
     if (root != NULL)
     {
@@ -281,8 +279,7 @@ void print_left_right(Node* root, int *upr, int *lwr, vector<int> *store)
         {
             *upr = root->key - 1;
             *lwr = root->left->key + 1;
-            store->push_back(*lwr);
-            store->push_back(*upr);
+            store->push_back(make_pair(*lwr, *upr));
             *upr = 2147483647;
             *lwr = -2147483648;
         }
@@ -291,7 +288,7 @@ void print_left_right(Node* root, int *upr, int *lwr, vector<int> *store)
     }
 }
 
-void print_right_left(Node* root, int *upr, int *lwr, vector<int> *store)
+void print_right_left(Node* root, int *upr, int *lwr, vector< pair <int,int> > *store)
 {
     if (root != NULL)
     {
@@ -300,8 +297,7 @@ void print_right_left(Node* root, int *upr, int *lwr, vector<int> *store)
         {
             *lwr = root->key +1;
             *upr = root->right->key -1;
-            store->push_back(*lwr);
-            store->push_back(*upr);
+            store->push_back(make_pair(*lwr, *upr));
             *upr = 2147483647;
             *lwr = -2147483648;
         }
