@@ -6,14 +6,6 @@
 #include "Tree.h"
 using namespace std;
 
-int removeDups(vector<int> a, int N)
-{
-    set<int> s;
-    for(int i = 0; i < N; ++i ) s.insert(a[i]);
-    a.assign( s.begin(), s.end() );
-    return a.size();
-}
-
 vector<int> int_vector(string array) // string array to int vector
 {
   stringstream ss;
@@ -35,6 +27,16 @@ vector<int> int_vector(string array) // string array to int vector
         temp = ""; 
     }    
     return arr;
+}
+
+void delete_nodes(Node* root)
+{
+  if(root != NULL)
+  {
+    delete_nodes(root->left);
+    delete_nodes(root->right);
+    delete root;
+  }
 }
 
 Node* insert_master(Node* root, vector<int> int_vec)
@@ -250,9 +252,8 @@ int main(int argc, char* argv[])
         }
 			}
 		}
-
-    delete root;
-        
+    
+    delete_nodes(root);
 	}
 	return 0;
 
