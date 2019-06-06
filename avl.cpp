@@ -15,21 +15,15 @@ vector<int> int_vector(string array) // string array to int vector
   int found; 
   while (!ss.eof()) 
   { 
-  
-        /* extracting word by word from stream */
-        ss >> temp; 
-  
-        /* Checking the given word is integer or not */
-        if (stringstream(temp) >> found) 
-            arr.push_back(found);
-  
-        /* To save from space at the end of string */
-        temp = ""; 
-    }    
+    ss >> temp; 
+    if (stringstream(temp) >> found) 
+        arr.push_back(found);
+    temp = ""; 
+  }    
     return arr;
 }
 
-void delete_nodes(Node* root)
+void delete_nodes(Node* root) // delete heaps at the end
 {
   if(root != NULL)
   {

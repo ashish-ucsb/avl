@@ -6,44 +6,29 @@
 #include "Tree.h"
 using namespace std;
 
-// A utility function to get the  
-// height of the tree  
 int height(Node *N)  
 {  
     if (N == NULL)  
         return 0;  
     return N->height;  
 }  
-  
-// A utility function to get maximum 
-// of two integers  
+
 int max(int a, int b)  
 {  
     return (a > b)? a : b;  
-}
+} 
 
-int min(int a, int b)  
-{  
-    return (a < b)? a : b;  
-}  
-  
-/* Helper function that allocates a  
-   new node with the given key and  
-   NULL left and right pointers. */
 Node* newNode(int key)  
 {  
     Node* node = new Node(); 
     node->key = key;  
     node->left = NULL;  
     node->right = NULL;  
-    node->height = 1; // new node is initially 
-                      // added at leaf  
+    node->height = 1; 
     return(node);  
 }  
   
-// A utility function to right 
-// rotate subtree rooted with y  
-// See the diagram given above.  
+ 
 Node *rightRotate(Node *y)  
 {  
     Node *x = y->left;  
@@ -63,9 +48,7 @@ Node *rightRotate(Node *y)
     return x;  
 }  
   
-// A utility function to left  
-// rotate subtree rooted with x  
-// See the diagram given above.  
+
 Node *leftRotate(Node *x)  
 {  
     Node *y = x->right;  
@@ -93,9 +76,7 @@ int getBalance(Node *N)
     return height(N->left) - height(N->right);  
 }  
   
-// Recursive function to insert a key 
-// in the subtree rooted with node and 
-// returns the new root of the subtree.  
+
 Node* insert(Node* node, int key, int *rotations, int *visits)  
 {  
     /* 1. Perform the normal BST insertion */
@@ -164,20 +145,6 @@ Node* insert(Node* node, int key, int *rotations, int *visits)
     /* return the (unchanged) node pointer */
     return node;  
 }  
-  
-// A utility function to print preorder  
-// traversal of the tree.  
-// The function also prints height  
-// of every node  
-void preOrder(Node *root)  
-{  
-    if(root != NULL)  
-    {  
-        cout << root->key << " ";  
-        preOrder(root->left);  
-        preOrder(root->right);  
-    }  
-}
 
 int lookup(Node* root, int find, int *visits)
 {
